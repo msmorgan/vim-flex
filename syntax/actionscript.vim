@@ -50,7 +50,7 @@ syn keyword actionScriptRepeat		while for each do in label
 "syn match   actionScriptRepeat		"for each"
 syn keyword actionScriptBranch		break continue
 syn keyword actionScriptOperator	new delete instanceof typeof
-syn keyword actionScriptType		Array Boolean Class Date Function int Math Namespace Number Object QName String RegExp uint Vector XML XMLList
+syn keyword actionScriptType		Array Boolean Class Date Function int Math Namespace Number Object QName String RegExp uint Vector void XML XMLList
 syn keyword actionScriptStatement	return with
 syn keyword actionScriptBoolean		true false
 syn keyword actionScriptNull		null undefined
