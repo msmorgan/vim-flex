@@ -30,14 +30,51 @@ else
   unlet b:current_syntax
 endif
 
-" FIXME highlight start and end delimiters as xml
-syn include @mxmlAS syntax/actionscript.vim
-syn region mxmlScript		matchgroup=xmlTag start=+<fx:Script>+ matchgroup=xmlEndTag end=+</fx:Script>+ contains=@mxmlAS
+syn include @actionScript syntax/actionscript.vim
+syn include @css syntax/css.vim
 
-syn region mxmlMetadata		matchgroup=xmlTag start=+<fx:Metadata>+ matchgroup=xmlEndTag end=+</fx:Metadata>+ contains=@mxmlAS,@xmlTagHook 
+syn region mxmlScript
+	\ start=+<fx:Script[^!?/<>]*>+
+	\ keepend
+	\ end=+</fx:Script>+me=s-1
+	\ contains=@actionScript,mxmlSpecialTag,mxmlActionScriptCdata
 
-syn include @mxmlCSS syntax/css.vim
-syn region mxmlStyle		matchgroup=xmlTag start="<fx:Style>" matchgroup=xmlEndTag end="</fx:Style>" contains=@mxmlCSS
+syn region mxmlMetadata
+	\ start=+<fx:Metadata[^>]*>+
+	\ keepend
+	\ end=+</fx:Metadata>+me=s-1
+	\ contains=@actionScript,mxmlSpecialTag,mxmlActionScriptCdata
+
+syn region mxmlStyle
+	\ start=+<fx:Style[^>]*>+
+	\ keepend
+	\ end=+</fx:Style>+me=s-1
+	\ contains=@css,mxmlSpecialTag,mxmlCssCdata
+
+syn region mxmlSpecialTag
+	\ start=+<fx:\(Script\|Metadata\|Style\)+
+	\ end=+>+
+	\ contained
+	\ contains=xmlTagName,xmlAttrib,xmlEqual,xmlString
+hi def link mxmlSpecialTag xmlTag
+
+
+" FIXME this works because of a hack
+syn region mxmlActionScriptCdata
+	\ start=+<!\[CDATA\[+
+	\ matchgroup=xmlCdataEnd
+	\ end=+]]>+
+	\ contains=@actionScript,xmlCdataStart,@xmlCdataHook
+	\ keepend
+	\ extend
+
+syn region mxmlCssCdata
+	\ start=+<!\[CDATA\[+
+	\ matchgroup=xmlCdataEnd
+	\ end=+]]>+
+	\ contains=@css,xmlCdataStart
+	\ keepend
+	\ extend
 
 
 let b:current_syntax = "mxml"
