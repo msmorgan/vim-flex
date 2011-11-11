@@ -3,7 +3,7 @@
 " Author:	Michael Morgan <michael.morgan@mind-over-data.com>
 " URL:		https://github.com/msmorgan/vim-flex
 " Filenames:	*.as
-" Based On:	JavaScript syntax by Claudio Feiner <claudio@feiner.com>
+" Based On:	JavaScript syntax by Claudio Fleiner <claudio@fleiner.com>
 
 
 " For version 5.x: Clear all syntax items
