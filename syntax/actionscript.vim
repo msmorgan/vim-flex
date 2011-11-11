@@ -119,7 +119,7 @@ if version >= 508 || !exists("did_actionscript_syn_inits")
   HiLink actionScriptType		Type
   HiLink actionScriptStatement		Statement
   HiLink actionScriptFunction		Function
-  HiLink actionScriptBraces		Function
+  "HiLink actionScriptBraces		Function
   HiLink actionScriptError		Error
   HiLink actionScrParenError		actionScriptError
   HiLink actionScriptNull		Keyword
