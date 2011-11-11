@@ -1,12 +1,8 @@
 " Vim syntax file
 " Language:	MXML (2009)
-" Maintainer:	Michael Morgan <morgan.michael@me.com>
-" URL:		https://github.com/msmorgan/vim-flex FIXME
-" Last Change:	November 10, 2011
+" Author:	Michael Morgan <michael.morgan@mind-over-data.com>
+" URL:		https://github.com/msmorgan/vim-flex
 " Filenames:	*.mxml
-
-" CHANGE LOG:
-" Quit when a syntax file was already loaded
 
 if version < 600
   syntax clear

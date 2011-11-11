@@ -1,9 +1,10 @@
 " Vim syntax file
 " Language:	ActionScript
-" Maintainer:	Michael Morgan <michael.morgan@mind-over-data.com>
-" URL:		https://github.com/msmorgan/vim-actionscript FIXME
-" Last Change:	2011 Nov 09
+" Author:	Michael Morgan <michael.morgan@mind-over-data.com>
+" URL:		https://github.com/msmorgan/vim-flex
+" Filenames:	*.as
 " Based On:	JavaScript syntax by Claudio Feiner <claudio@feiner.com>
+
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -56,16 +57,15 @@ syn keyword actionScriptBoolean		true false
 syn keyword actionScriptNull		null undefined
 syn keyword actionScriptIdentifier	this var super
 syn keyword actionScriptLabel		case
-syn match   actionScriptLabel		"default\(\s\+xml\s\+namespace\)\@!"
+"keyword has a higher priority than match
+syn match   actionScriptLabel		"default"
 syn keyword actionScriptException	try catch finally throw
-"syn keyword actionScriptMessage	trace
 syn keyword actionScriptBuiltin		decodeURI decodeURIComponent encodeURI encodeURIComponent escape isFinite isNaN isXMLName parseFloat parseInt trace unescape
 syn keyword actionScriptClassDecl	class extends implements interface
-syn keyword actionScriptExternal	package native namespace import include
+syn keyword actionScriptExternal	package namespace import include
 syn match   actionScriptExternal	"\(use\|default\s\+xml\)\s\+namespace"
 syn keyword actionScriptGlobal		_global _level _root
-"syn keyword actionScriptMember
-"syn keyword actionScriptDeprecated
+syn keyword actionScriptUnavailable	native
 syn keyword actionScriptMethodDecl	override get set
 syn keyword actionScriptScopeDecl	internal public protected private abstract
 syn keyword actionScriptStorageClass	const dynamic final static
@@ -132,8 +132,7 @@ if version >= 508 || !exists("did_actionscript_syn_inits")
   HiLink actionScriptException		Exception
   HiLink actionScriptBuiltin		Keyword
   HiLink actionScriptGlobal		Keyword
-  "HiLink actionScriptMember		Keyword
-  "HiLink actionScriptDeprecated	Exception
+  HiLink actionScriptUnavailable	Error
   HiLink actionScriptReserved		Keyword
   HiLink actionScriptDebug		Debug
   HiLink actionScriptConstant		Label
