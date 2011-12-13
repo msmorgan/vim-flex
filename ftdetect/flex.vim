@@ -1,3 +1,3 @@
-autocmd BufNewFile,BufRead *.mxml setf mxml
-autocmd BufNewFile,BufRead *.as setf actionscript
+autocmd BufNewFile,BufRead *.mxml set filetype=mxml
+autocmd BufNewFile,BufRead *.as set filetype=actionscript
 
