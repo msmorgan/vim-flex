@@ -34,10 +34,11 @@ syn match   actionScriptSpecial		"\\\d\d\d\|\\."
 syn region  actionScriptStringD		start=+"+  skip=+\\\\\|\\"+  end=+"\|$+	contains=actionScriptSpecial,@htmlPreproc
 syn region  actionScriptStringS		start=+'+  skip=+\\\\\|\\'+  end=+'\|$+	contains=actionScriptSpecial,@htmlPreproc
 syn match   actionScriptSpecialChar	"'\\.'"
+syn match   actionScriptGeneric         +\(\.\|new\s*\)<\w\+>+ contains=actionScriptType,actionScriptOperator
 
 syn include @XML syntax/xml.vim
-syn match   actionScriptE4X		"<\([^ /!?<>"']\+\).*/>" contains=@XML
-syn region  actionScriptE4X		start="<\z([^ /!?<>"']\+\).\{-}/\@<!\(>\)" keepend end="</\z1>" contains=@XML
+syn match   actionScriptE4X		"\(new\s*\)\@<!<\([^ /!?<>"']\+\).*/>" contains=@XML
+syn region  actionScriptE4X		start="\(new\s*\)\@<!<\z([^ /!?<>"']\+\).\{-}/\@<!\(>\)" keepend end="</\z1>" contains=@XML
 
 syn match   actionScriptNumber		"\<\(\d\+\|0[xX][0-9a-fA-F]\+\)[lL]\=\>"
 syn match   actionScriptNumber		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[fFdD]\="
@@ -47,11 +48,13 @@ syn keyword actionScriptNumber		Infinity NaN
 syn region  actionScriptRegExpString	start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi]\{0,2\}\s*$+ end=+/[gi]\{0,2\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
 
 syn keyword actionScriptConditional	if else switch
-syn keyword actionScriptRepeat		while for each do in label
-"syn match   actionScriptRepeat		"for each"
+syn keyword actionScriptRepeat		while do in label
+syn match   actionScriptRepeat		"\<for\_s+each\>"
 syn keyword actionScriptBranch		break continue
-syn keyword actionScriptOperator	new delete instanceof typeof
-syn keyword actionScriptType		Array Boolean Class Date Function int Math Namespace Number Object QName String RegExp uint Vector void XML XMLList
+syn keyword actionScriptOperator	delete instanceof typeof
+syn match   actionScriptOperator	"\<new\>"
+syn keyword actionScriptType		Array Boolean Class Date Function int Math Namespace Number Object QName String RegExp uint void XML XMLList
+syn match   actionScriptType		"\<Vector\>"
 syn keyword actionScriptStatement	return with
 syn keyword actionScriptBoolean		true false
 syn keyword actionScriptNull		null undefined
